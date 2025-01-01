@@ -1,14 +1,14 @@
 package com.webcart.project.service;
 
-import com.webcart.project.model.Category;
-import java.util.List;
+import com.webcart.project.payload.CategoryDTO;
+import com.webcart.project.payload.CategoryResponse;
 
 public interface CategoryService {
-    List<Category> getAllCategories();
+    CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
-    void createCategory(Category category);
+    CategoryDTO createCategory(CategoryDTO categoryDTO);
 
-    String deleteCategory(Long categoryId);
+    CategoryDTO deleteCategory(Long categoryId);
 
-    Category updateCategory(Category category, Long categoryId);
+    CategoryDTO updateCategory(CategoryDTO categoryDTO, Long categoryId);
 }
