@@ -1,6 +1,6 @@
 package com.webcart.project.service;
 
-import com.webcart.project.exception.ApiException;
+import com.webcart.project.exception.APIException;
 import com.webcart.project.exception.ResourceNotFoundException;
 import com.webcart.project.model.Category;
 import com.webcart.project.model.Product;
@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
             Product savedProduct = productRepository.save(product);
             return modelMapper.map(savedProduct, ProductDTO.class);
         }else {
-            throw new ApiException("product already exists!!!");
+            throw new APIException("product already exists!!!");
         }
     }
 
@@ -77,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .toList();
         if(products.isEmpty()){
-            throw new ApiException("no product exists!!!");
+            throw new APIException("no product exists!!!");
         }
         ProductResponse productResponse = new ProductResponse();
         productResponse.setContent(productDTOS);
@@ -102,7 +102,7 @@ public class ProductServiceImpl implements ProductService {
 
         List<Product> products = pageProducts.getContent();
         if(products.isEmpty()){
-            throw new ApiException("no product exists!!!");
+            throw new APIException("no product exists!!!");
         }
         List<ProductDTO> productDTOS = products.stream()
                 .map(product -> modelMapper.map(product, ProductDTO.class))
@@ -131,7 +131,7 @@ public class ProductServiceImpl implements ProductService {
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .toList();
         if(products.isEmpty()){
-            throw new ApiException("no product exists!!!");
+            throw new APIException("no product exists!!!");
         }
         ProductResponse productResponse = new ProductResponse();
         productResponse.setContent(productDTOS);

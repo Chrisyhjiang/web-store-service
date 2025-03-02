@@ -1,6 +1,6 @@
 package com.webcart.project.service;
 
-import com.webcart.project.exception.ApiException;
+import com.webcart.project.exception.APIException;
 import com.webcart.project.exception.ResourceNotFoundException;
 import com.webcart.project.model.Category;
 import com.webcart.project.payload.CategoryDTO;
@@ -35,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService{
         Page<Category> categoryPage = categoryRepository.findAll(pageDetails);
         List<Category> categories = categoryPage.getContent();
         if(categories.isEmpty()){
-            throw new ApiException("no category find...");
+            throw new APIException("no category find...");
         }
         List<CategoryDTO> categoryDTOS = categories.stream()
                 .map(category -> modelMapper.map(category, CategoryDTO.class))
@@ -55,7 +55,7 @@ public class CategoryServiceImpl implements CategoryService{
         Category category = modelMapper.map(categoryDTO, Category.class);
         Category categoryFromDB = categoryRepository.findByCategoryName(category.getCategoryName());
         if(categoryFromDB  != null){
-            throw new ApiException("Category with name: " + categoryFromDB .getCategoryName() + " already exists");
+            throw new APIException("Category with name: " + categoryFromDB .getCategoryName() + " already exists");
         }
         Category savedCategory = categoryRepository.save(category);
         return modelMapper.map(savedCategory, CategoryDTO.class);
